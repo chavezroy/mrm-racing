@@ -216,7 +216,7 @@
   
   .carousel .custom-shape-divider-bottom-1741054392 {
     position: absolute;
-    bottom: 0;
+    bottom: -2px;
     left: 0;
     width: 100%;
     z-index: 20;
