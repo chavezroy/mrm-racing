@@ -24,29 +24,29 @@ export default function Header() {
 
   return (
     <div className="honey">
-      <header className="flex flex-wrap justify-center py-3 px-5 border-b border-[#333]">
+      <header className="flex flex-wrap items-center justify-center py-3 px-5 border-b border-[#333]">
         <Link
           href="/"
-          className="flex items-center mb-0 me-auto logo-header"
+          className="flex items-center mb-0 me-auto"
         >
           <Image
             src="/img/logo-mrm-racing.png"
             alt="MRM Racing"
-            width={200}
-            height={44}
-            className="h-11 relative top-1"
+            width={107}
+            height={32}
+            className="h-8 relative top-1"
           />
           <span className="hidden">MRM Racing</span>
         </Link>
-        <ul className="hidden lg:flex nav nav-pills">
+        <ul className="hidden lg:flex items-center gap-4">
           {navLinks.map((link) => (
-            <li key={link.href} className="nav-item">
+            <li key={link.href}>
               <Link
                 href={link.href}
-                className={`nav-link px-3 py-2 ${
+                className={`nav-link px-3 py-2 transition-colors duration-300 ${
                   isActive(link.href)
                     ? "active text-primary"
-                    : "text-[#c5c5c5] hover:text-white"
+                    : "text-[#c5c5c5] hover:text-primary"
                 }`}
               >
                 {link.label}
@@ -86,12 +86,12 @@ export default function Header() {
           }}
           onClick={(e) => e.stopPropagation()}
         >
-          <div className="navbar-collapse p-4">
-            <ul className="navbar-nav text-center mt-8">
-              <li className="nav-item mb-4">
+          <div className="p-4">
+            <ul className="text-center mt-8">
+              <li className="mb-4">
                 <Link
                   href="/"
-                  className={`nav-link ${
+                  className={`nav-link transition-colors duration-300 ${
                     pathname === "/" ? "active text-primary" : "text-[#c5c5c5]"
                   } hover:text-primary`}
                   onClick={() => setIsMenuOpen(false)}
@@ -100,10 +100,10 @@ export default function Header() {
                 </Link>
               </li>
               {navLinks.map((link) => (
-                <li key={link.href} className="nav-item mb-4">
+                <li key={link.href} className="mb-4">
                   <Link
                     href={link.href}
-                    className={`nav-link ${
+                    className={`nav-link transition-colors duration-300 ${
                       isActive(link.href)
                         ? "active text-primary"
                         : "text-[#c5c5c5]"

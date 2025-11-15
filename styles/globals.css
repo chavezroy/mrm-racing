@@ -13,13 +13,12 @@
     margin: 0;
   }
 
-  /* Only apply transitions to specific interactive elements - exclude transform to avoid conflicts with animations */
+  /* Apply transitions to interactive elements - exclude transform to avoid conflicts with animations */
   a:not([class*="motion"]):not([class*="animate"]):not([class*="scale"]):not([class*="group-hover:"]),
   button:not([class*="motion"]):not([class*="animate"]):not([class*="scale"]):not([class*="group-hover:"]),
   input:not([class*="motion"]):not([class*="animate"]),
   textarea:not([class*="motion"]):not([class*="animate"]),
   select:not([class*="motion"]):not([class*="animate"]),
-  .nav-link:not([class*="motion"]):not([class*="animate"]),
   .btn:not([class*="motion"]):not([class*="animate"]):not([class*="scale"]):not([class*="group-hover:"]),
   .card:not([class*="motion"]):not([class*="animate"]),
   .card-title:not([class*="motion"]):not([class*="animate"]):not([class*="group-hover:"]) {
@@ -105,15 +104,26 @@
   a {
     @apply text-primary no-underline bg-transparent;
     transition: color 300ms ease-out;
+    cursor: pointer;
   }
 
   a:hover {
     @apply text-[#ff6341] no-underline bg-transparent;
   }
 
+  button:not(:disabled) {
+    cursor: pointer;
+  }
+  
+  button:disabled {
+    cursor: not-allowed;
+  }
+
   .nav-link {
-    @apply text-[#c5c5c5];
+    @apply text-[#c5c5c5] no-underline;
     transition: color 300ms ease-out;
+    cursor: pointer;
+    display: inline-block;
   }
 
   .nav-link:hover,
@@ -121,8 +131,7 @@
     @apply text-primary;
   }
 
-  .navbar-nav .nav-link.active,
-  footer .nav .nav-link.active {
+  .nav-link.active {
     @apply text-primary;
   }
 }
@@ -447,6 +456,7 @@
   .btn-primary {
     @apply text-white bg-primary border-primary;
     transition: background-color 300ms ease-out, border-color 300ms ease-out;
+    cursor: pointer;
   }
   
   /* Ensure transform transitions work on buttons with scale hover */
@@ -487,9 +497,6 @@
     @apply opacity-0;
   }
 
-  .navbar-nav.justify-content-end {
-    @apply text-center mt-8;
-  }
 
   .v-80 {
     @apply min-h-[80vh];
