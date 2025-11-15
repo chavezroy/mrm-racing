@@ -1,119 +1,144 @@
 "use client";
 
-import { useState } from "react";
+import { useForm } from "@formspree/react";
+import { motion } from "framer-motion";
+import { useEffect } from "react";
 import ScrollReveal from "./ScrollReveal";
 
 type PartnerFormProps = {
   className?: string;
+  onSuccessStateChange?: (isSuccess: boolean) => void;
 };
 
-type FormErrors = {
-  name?: string;
-  email?: string;
-  company?: string;
-  message?: string;
-};
+export default function PartnerForm({ className = "", onSuccessStateChange }: PartnerFormProps) {
+  const [state, handleSubmit] = useForm("mjkanpqb");
 
-export default function PartnerForm({ className = "" }: PartnerFormProps) {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    company: "",
-    message: "",
-  });
-  const [errors, setErrors] = useState<FormErrors>({});
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState<"success" | "error" | null>(null);
-
-  const validateEmail = (email: string): boolean => {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
+  // Helper function to check if a field has errors
+  const hasFieldError = (fieldName: string): boolean => {
+    if (!state.errors) return false;
+    // Check if errors is an array
+    if (Array.isArray(state.errors)) {
+      return state.errors.some((error: any) => error.field === fieldName);
+    }
+    // Check if errors is an object with field names as keys
+    if (typeof state.errors === 'object') {
+      return fieldName in state.errors;
+    }
+    return false;
   };
 
-  const validate = (): boolean => {
-    const newErrors: FormErrors = {};
-
-    if (!formData.name.trim()) {
-      newErrors.name = "Name is required";
+  // Helper function to get error message for a field
+  const getFieldError = (fieldName: string): string | null => {
+    if (!state.errors) return null;
+    // Check if errors is an array
+    if (Array.isArray(state.errors)) {
+      const error = state.errors.find((error: any) => error.field === fieldName);
+      return error ? error.message : null;
     }
-
-    if (!formData.email.trim()) {
-      newErrors.email = "Email is required";
-    } else if (!validateEmail(formData.email)) {
-      newErrors.email = "Please enter a valid email address";
-    }
-
-    if (!formData.company.trim()) {
-      newErrors.company = "Company is required";
-    }
-
-    if (!formData.message.trim()) {
-      newErrors.message = "Message is required";
-    }
-
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-  };
-
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
-    // Clear error when user starts typing
-    if (errors[name as keyof FormErrors]) {
-      setErrors({
-        ...errors,
-        [name]: undefined,
-      });
-    }
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    
-    if (!validate()) {
-      return;
-    }
-
-    setIsSubmitting(true);
-    setSubmitStatus(null);
-
-    try {
-      // TODO: Replace with actual API endpoint
-      const response = await fetch("/api/partner", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
-
-      if (response.ok) {
-        setSubmitStatus("success");
-        setFormData({
-          name: "",
-          email: "",
-          company: "",
-          message: "",
-        });
-      } else {
-        setSubmitStatus("error");
+    // Check if errors is an object with field names as keys
+    if (typeof state.errors === 'object' && fieldName in state.errors) {
+      const error = (state.errors as any)[fieldName];
+      // If it's an array, get the first message
+      if (Array.isArray(error)) {
+        return error[0]?.message || error[0] || null;
       }
-    } catch (error) {
-      console.error("Form submission error:", error);
-      setSubmitStatus("error");
-    } finally {
-      setIsSubmitting(false);
+      // If it's a string, return it
+      if (typeof error === 'string') {
+        return error;
+      }
+      // If it's an object with a message property
+      if (error?.message) {
+        return error.message;
+      }
     }
+    return null;
   };
+
+  // Helper function to get general submission error (not field-specific)
+  const getGeneralError = (): string | null => {
+    if (!state.errors) return null;
+    // Check if errors is an array
+    if (Array.isArray(state.errors)) {
+      // Find errors that don't have a field property (general errors)
+      const generalError = state.errors.find((error: any) => !error.field);
+      return generalError ? generalError.message : null;
+    }
+    // Check if errors is an object
+    if (typeof state.errors === 'object') {
+      // Check for common general error keys
+      const generalErrorKeys = ['_form', 'form', 'message', 'error'];
+      for (const key of generalErrorKeys) {
+        if (key in state.errors) {
+          const error = (state.errors as any)[key];
+          if (Array.isArray(error)) {
+            return error[0]?.message || error[0] || null;
+          }
+          if (typeof error === 'string') {
+            return error;
+          }
+          if (error?.message) {
+            return error.message;
+          }
+        }
+      }
+      // If there are errors but no field-specific errors, it might be a general error
+      const fieldNames = ['name', 'email', 'company', 'message'];
+      const hasFieldErrors = fieldNames.some(field => hasFieldError(field));
+      if (!hasFieldErrors && Object.keys(state.errors).length > 0) {
+        // Try to get the first error message
+        const firstKey = Object.keys(state.errors)[0];
+        const error = (state.errors as any)[firstKey];
+        if (Array.isArray(error)) {
+          return error[0]?.message || error[0] || null;
+        }
+        if (typeof error === 'string') {
+          return error;
+        }
+        if (error?.message) {
+          return error.message;
+        }
+      }
+    }
+    return null;
+  };
+
+  // Check if there's a general submission error
+  const hasGeneralError = (): boolean => {
+    if (!state.errors) return false;
+    const generalError = getGeneralError();
+    if (generalError) return true;
+    // If there are errors but no field-specific errors, treat as general error
+    const fieldNames = ['name', 'email', 'company', 'message'];
+    const hasFieldErrors = fieldNames.some(field => hasFieldError(field));
+    if (!hasFieldErrors && state.errors && Object.keys(state.errors).length > 0) {
+      return true;
+    }
+    return false;
+  };
+
+  // Notify parent of success state changes
+  useEffect(() => {
+    if (onSuccessStateChange) {
+      onSuccessStateChange(state.succeeded);
+    }
+  }, [state.succeeded, onSuccessStateChange]);
+
+  // Don't render success message here - it will be rendered in parent
+  // But we still need to render something to keep the component mounted
+  // so the callback can fire
+  if (state.succeeded) {
+    return <div style={{ display: 'none' }} />;
+  }
 
   return (
     <ScrollReveal animation="fadeIn" className={className}>
-      <form action="/" method="post" onSubmit={handleSubmit}>
+      <motion.form
+        initial={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.3 }}
+        onSubmit={handleSubmit}
+        className="w-full"
+      >
         <div className="product-options">
           <div className="selector-wrapper">
             <div className="mb-3 row flex flex-col md:flex-row md:items-center md:justify-end">
@@ -124,22 +149,21 @@ export default function PartnerForm({ className = "" }: PartnerFormProps) {
                 <input
                   id="name"
                   className={`form-control border-2 rounded px-3 py-2 w-full transition-colors ${
-                    errors.name 
-                      ? "bg-red-50 border-red-500 focus:border-red-500 focus:ring-red-500" 
-                      : "bg-white border-gray-300 focus:border-primary focus:ring-primary"
+                    hasFieldError('name') 
+                      ? 'bg-red-50 border-red-500 focus:border-red-500 focus:ring-red-500' 
+                      : 'bg-white border-gray-300 focus:border-primary focus:ring-primary'
                   } text-black focus:outline-none focus:ring-2 focus:ring-opacity-50`}
                   type="text"
                   name="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  aria-invalid={errors.name ? "true" : "false"}
-                  aria-describedby={errors.name ? "name-error" : undefined}
+                  required
                 />
-                {errors.name && (
-                  <p id="name-error" className="text-red-500 text-sm mt-1 font-medium flex items-center gap-1">
-                    <span className="text-red-500">●</span>
-                    {errors.name}
-                  </p>
+                {hasFieldError('name') && (
+                  <div className="mt-1 p-2 bg-red-50 border border-red-300 rounded">
+                    <p className="text-red-700 text-sm font-medium flex items-center gap-1">
+                      <span className="text-red-500">✕</span>
+                      {getFieldError('name') || 'Name is required'}
+                    </p>
+                  </div>
                 )}
               </div>
             </div>
@@ -153,23 +177,22 @@ export default function PartnerForm({ className = "" }: PartnerFormProps) {
                 <input
                   id="email"
                   className={`form-control opacity-change border-2 rounded px-3 py-2 w-full placeholder:text-gray-400 transition-colors ${
-                    errors.email 
-                      ? "bg-red-50 border-red-500 focus:border-red-500 focus:ring-red-500" 
-                      : "bg-white border-gray-300 focus:border-primary focus:ring-primary"
+                    hasFieldError('email') 
+                      ? 'bg-red-50 border-red-500 focus:border-red-500 focus:ring-red-500' 
+                      : 'bg-white border-gray-300 focus:border-primary focus:ring-primary'
                   } text-black focus:outline-none focus:ring-2 focus:ring-opacity-50`}
                   type="email"
                   name="email"
                   placeholder="email@domain.com"
-                  value={formData.email}
-                  onChange={handleChange}
-                  aria-invalid={errors.email ? "true" : "false"}
-                  aria-describedby={errors.email ? "email-error" : undefined}
+                  required
                 />
-                {errors.email && (
-                  <p id="email-error" className="text-red-500 text-sm mt-1 font-medium flex items-center gap-1">
-                    <span className="text-red-500">●</span>
-                    {errors.email}
-                  </p>
+                {hasFieldError('email') && (
+                  <div className="mt-1 p-2 bg-red-50 border border-red-300 rounded">
+                    <p className="text-red-700 text-sm font-medium flex items-center gap-1">
+                      <span className="text-red-500">✕</span>
+                      {getFieldError('email') || 'Email is required'}
+                    </p>
+                  </div>
                 )}
               </div>
             </div>
@@ -183,22 +206,21 @@ export default function PartnerForm({ className = "" }: PartnerFormProps) {
                 <input
                   id="company"
                   className={`form-control border-2 rounded px-3 py-2 w-full transition-colors ${
-                    errors.company 
-                      ? "bg-red-50 border-red-500 focus:border-red-500 focus:ring-red-500" 
-                      : "bg-white border-gray-300 focus:border-primary focus:ring-primary"
+                    hasFieldError('company') 
+                      ? 'bg-red-50 border-red-500 focus:border-red-500 focus:ring-red-500' 
+                      : 'bg-white border-gray-300 focus:border-primary focus:ring-primary'
                   } text-black focus:outline-none focus:ring-2 focus:ring-opacity-50`}
                   type="text"
                   name="company"
-                  value={formData.company}
-                  onChange={handleChange}
-                  aria-invalid={errors.company ? "true" : "false"}
-                  aria-describedby={errors.company ? "company-error" : undefined}
+                  required
                 />
-                {errors.company && (
-                  <p id="company-error" className="text-red-500 text-sm mt-1 font-medium flex items-center gap-1">
-                    <span className="text-red-500">●</span>
-                    {errors.company}
-                  </p>
+                {hasFieldError('company') && (
+                  <div className="mt-1 p-2 bg-red-50 border border-red-300 rounded">
+                    <p className="text-red-700 text-sm font-medium flex items-center gap-1">
+                      <span className="text-red-500">✕</span>
+                      {getFieldError('company') || 'Company is required'}
+                    </p>
+                  </div>
                 )}
               </div>
             </div>
@@ -212,22 +234,21 @@ export default function PartnerForm({ className = "" }: PartnerFormProps) {
                 <textarea
                   id="message"
                   className={`form-control border-2 rounded px-3 py-2 w-full transition-colors resize-y ${
-                    errors.message 
-                      ? "bg-red-50 border-red-500 focus:border-red-500 focus:ring-red-500" 
-                      : "bg-white border-gray-300 focus:border-primary focus:ring-primary"
+                    hasFieldError('message') 
+                      ? 'bg-red-50 border-red-500 focus:border-red-500 focus:ring-red-500' 
+                      : 'bg-white border-gray-300 focus:border-primary focus:ring-primary'
                   } text-black focus:outline-none focus:ring-2 focus:ring-opacity-50`}
                   name="message"
                   rows={4}
-                  value={formData.message}
-                  onChange={handleChange}
-                  aria-invalid={errors.message ? "true" : "false"}
-                  aria-describedby={errors.message ? "message-error" : undefined}
+                  required
                 />
-                {errors.message && (
-                  <p id="message-error" className="text-red-500 text-sm mt-1 font-medium flex items-center gap-1">
-                    <span className="text-red-500">●</span>
-                    {errors.message}
-                  </p>
+                {hasFieldError('message') && (
+                  <div className="mt-1 p-2 bg-red-50 border border-red-300 rounded">
+                    <p className="text-red-700 text-sm font-medium flex items-center gap-1">
+                      <span className="text-red-500">✕</span>
+                      {getFieldError('message') || 'Message is required'}
+                    </p>
+                  </div>
                 )}
               </div>
             </div>
@@ -239,24 +260,16 @@ export default function PartnerForm({ className = "" }: PartnerFormProps) {
                 <div className="text-right">
                   <button
                     type="submit"
-                    disabled={isSubmitting}
+                    disabled={state.submitting}
                     className="btn btn-primary bg-primary text-white border-primary hover:bg-[#c63615] hover:border-[#c63615] px-4 py-2 rounded disabled:opacity-50 disabled:cursor-not-allowed"
                   >
-                    {isSubmitting ? "Submitting..." : "Submit"}
+                    {state.submitting ? "Submitting..." : "Submit"}
                   </button>
-                  {submitStatus === "success" && (
-                    <div className="mt-2 p-3 bg-green-50 border-2 border-green-500 rounded">
-                      <p className="text-green-700 text-sm font-medium flex items-center gap-2">
-                        <span className="text-green-500 text-lg">✓</span>
-                        Thank you! Your message has been submitted successfully.
-                      </p>
-                    </div>
-                  )}
-                  {submitStatus === "error" && (
+                  {hasGeneralError() && (
                     <div className="mt-2 p-3 bg-red-50 border-2 border-red-500 rounded">
                       <p className="text-red-700 text-sm font-medium flex items-center gap-2">
                         <span className="text-red-500 text-lg">✕</span>
-                        There was an error submitting your message. Please try again.
+                        {getGeneralError() || 'There was an error submitting your message. Please try again.'}
                       </p>
                     </div>
                   )}
@@ -265,7 +278,7 @@ export default function PartnerForm({ className = "" }: PartnerFormProps) {
             </div>
           </div>
         </div>
-      </form>
+      </motion.form>
     </ScrollReveal>
   );
 }
