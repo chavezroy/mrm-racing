@@ -41,7 +41,7 @@ export default function HeroCarousel() {
           </div>
         </div>
       </div>
-      <ShapeDivider variant="bottom-1741054392" />
+      <ShapeDivider variant="bottom-1741054392" className="absolute bottom-0 left-0 w-full z-20" />
     </div>
   );
 }

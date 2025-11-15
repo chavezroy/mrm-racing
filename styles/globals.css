@@ -189,6 +189,21 @@
     }
   }
 
+  .custom-shape-divider-bottom-1741054392 {
+    @apply absolute bottom-0 left-0 w-full overflow-visible;
+    line-height: 0;
+    z-index: 20;
+    pointer-events: none;
+  }
+  
+  .carousel .custom-shape-divider-bottom-1741054392 {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 20;
+  }
+
   .custom-shape-divider-bottom-1741054392 svg {
     @apply relative block;
     width: calc(100% + 1.3px);
@@ -397,6 +412,11 @@
 
   .carousel {
     @apply h-[70vh] md:h-[75vh] bg-[#005c8a] relative;
+    overflow: visible;
+  }
+  
+  .carousel .carousel-inner {
+    overflow: hidden;
   }
 
   .carousel .carousel-inner,
