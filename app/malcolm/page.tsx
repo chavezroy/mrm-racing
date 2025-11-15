@@ -3,7 +3,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ScrollReveal from "@/components/ScrollReveal";
 import ShapeDivider from "@/components/ShapeDivider";
-import Image from "next/image";
+import MalcolmImage from "@/components/MalcolmImage";
 
 export const metadata: Metadata = {
   title: "MRM Racing - Meet Malcolm",
@@ -30,17 +30,7 @@ export default function MalcolmPage() {
           <div className="row flex flex-wrap -mx-4">
             <div className="w-full md:w-1/2 px-4 mb-4">
               <ScrollReveal animation="fadeIn" delay={0.2}>
-                <div className="skewed-image-mask-wrapper">
-                  <div className="skewed-image-mask">
-                    <Image
-                      src="/img/meet-about.jpg"
-                      alt="Malcolm Mancias"
-                      width={600}
-                      height={400}
-                      className="img-fluid mb-3 w-full"
-                    />
-                  </div>
-                </div>
+                <MalcolmImage />
               </ScrollReveal>
             </div>
             <div className="w-full md:w-1/2 px-4">

@@ -123,7 +123,8 @@ export default function HeroCarousel() {
   return (
     <div 
       ref={containerRef}
-      className="carousel overflow-hidden carousel-dark slide h-[70vh] md:h-[75vh] bg-[#005c8a] relative"
+      className="carousel overflow-hidden carousel-dark slide h-[70vh] md:h-[75vh] relative"
+      style={{ backgroundColor: 'rgb(5, 17, 27)' }}
     >
       <div className="carousel-inner h-full w-full">
         <div className="carousel-item active h-full w-full relative">

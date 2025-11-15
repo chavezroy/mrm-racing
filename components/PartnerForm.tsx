@@ -142,7 +142,7 @@ export default function PartnerForm({ className = "", onSuccessStateChange }: Pa
         <div className="product-options">
           <div className="selector-wrapper">
             <div className="mb-3 row flex flex-col md:flex-row md:items-center md:justify-end">
-              <label htmlFor="name" className="col-sm-4 col-form-label text-left md:text-right mb-2 md:mb-0 md:pr-4">
+              <label htmlFor="name" className="col-sm-4 col-form-label text-left md:text-right mb-2 md:mb-0 md:pr-4 whitespace-nowrap">
                 Full Name <span className="text-red-500">*</span>
               </label>
               <div className="col-sm-8 w-full md:max-w-[380px] md:flex-shrink-0">
@@ -170,7 +170,7 @@ export default function PartnerForm({ className = "", onSuccessStateChange }: Pa
           </div>
           <div className="product-quantity inline-input-wrapper">
             <div className="mb-3 row flex flex-col md:flex-row md:items-center md:justify-end">
-              <label htmlFor="email" className="col-sm-4 col-form-label text-left md:text-right mb-2 md:mb-0 md:pr-4">
+              <label htmlFor="email" className="col-sm-4 col-form-label text-left md:text-right mb-2 md:mb-0 md:pr-4 whitespace-nowrap">
                 Your Email <span className="text-red-500">*</span>
               </label>
               <div className="col-sm-8 w-full md:max-w-[380px] md:flex-shrink-0">
@@ -199,7 +199,7 @@ export default function PartnerForm({ className = "", onSuccessStateChange }: Pa
           </div>
           <div className="product-quantity inline-input-wrapper">
             <div className="mb-3 row flex flex-col md:flex-row md:items-center md:justify-end">
-              <label htmlFor="company" className="col-sm-4 col-form-label text-left md:text-right mb-2 md:mb-0 md:pr-4">
+              <label htmlFor="company" className="col-sm-4 col-form-label text-left md:text-right mb-2 md:mb-0 md:pr-4 whitespace-nowrap">
                 Company <span className="text-red-500">*</span>
               </label>
               <div className="col-sm-8 w-full md:max-w-[380px] md:flex-shrink-0">
@@ -227,7 +227,7 @@ export default function PartnerForm({ className = "", onSuccessStateChange }: Pa
           </div>
           <div className="product-quantity inline-input-wrapper">
             <div className="mb-3 row flex flex-col md:flex-row md:items-start md:justify-end">
-              <label htmlFor="message" className="col-sm-4 col-form-label text-left md:text-right mb-2 md:mb-0 md:pr-4 md:pt-2">
+              <label htmlFor="message" className="col-sm-4 col-form-label text-left md:text-right mb-2 md:mb-0 md:pr-4 md:pt-2 whitespace-nowrap">
                 Message <span className="text-red-500">*</span>
               </label>
               <div className="col-sm-8 w-full md:max-w-[380px] md:flex-shrink-0">
