@@ -11,7 +11,7 @@ export default function HeroCarousel() {
         <div className="carousel-item active h-full w-full relative">
           <div className="relative h-full w-full">
             <Image
-              src="/img/mrm_splash1.png"
+              src="/img/mrm_splash1.jpg"
               alt="Malcolm Mancias"
               fill
               className="object-cover"

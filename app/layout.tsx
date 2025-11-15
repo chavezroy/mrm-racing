@@ -26,7 +26,6 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    url: "https://www.manciasracing.com/",
     title: "Mancias Racing",
     description: "Kid Kart Racer",
     images: ["https://www.manciasracing.com/img/bg_hero.png"],

@@ -33,7 +33,7 @@ export default function MalcolmPage() {
                 <div className="skewed-image-mask-wrapper">
                   <div className="skewed-image-mask">
                     <Image
-                      src="/img/meet-about.png"
+                      src="/img/meet-about.jpg"
                       alt="Malcolm Mancias"
                       width={600}
                       height={400}

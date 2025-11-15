@@ -34,19 +34,19 @@ export default function Home() {
           <div className="row flex flex-wrap -mx-4 justify-center">
             <CTACard
               href="/gear"
-              image="/img/gear-equip.png"
+              image="/img/gear-equip.jpg"
               title="Gear & Equipment"
               description="Malcolm's kart, accessories and safety gear."
             />
             <CTACard
               href="/schedule"
-              image="/img/schedule.png"
+              image="/img/schedule.jpg"
               title="Schedule"
               description="Find Malcolm on the track. Check out the latest schedule."
             />
             <CTACard
               href="/partner"
-              image="/img/partner.png"
+              image="/img/partner.jpg"
               title="Partner"
               description="Want your brand on a winning formula? Contact us to become a partner."
             />
