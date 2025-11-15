@@ -14,34 +14,62 @@
   }
 
   /* Only apply transitions to specific interactive elements - exclude transform to avoid conflicts with animations */
-  a:not([class*="motion"]):not([class*="animate"]),
-  button:not([class*="motion"]):not([class*="animate"]),
+  a:not([class*="motion"]):not([class*="animate"]):not([class*="scale"]):not([class*="group-hover:"]),
+  button:not([class*="motion"]):not([class*="animate"]):not([class*="scale"]):not([class*="group-hover:"]),
   input:not([class*="motion"]):not([class*="animate"]),
   textarea:not([class*="motion"]):not([class*="animate"]),
   select:not([class*="motion"]):not([class*="animate"]),
   .nav-link:not([class*="motion"]):not([class*="animate"]),
-  .btn:not([class*="motion"]):not([class*="animate"]),
+  .btn:not([class*="motion"]):not([class*="animate"]):not([class*="scale"]):not([class*="group-hover:"]),
   .card:not([class*="motion"]):not([class*="animate"]),
-  .card-title:not([class*="motion"]):not([class*="animate"]) {
+  .card-title:not([class*="motion"]):not([class*="animate"]):not([class*="group-hover:"]) {
     transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 300ms;
+  }
+  
+  /* Ensure card-title with group-hover can transition colors smoothly */
+  .card-title[class*="group-hover:"] {
+    transition: color 300ms ease-out !important;
+  }
+  
+  /* Allow transform transitions on buttons and links with scale hover effects */
+  button[class*="scale"],
+  .btn[class*="scale"],
+  a[class*="scale"],
+  button[class*="group-hover:scale"],
+  .btn[class*="group-hover:scale"] {
+    transition-property: transform, color, background-color, border-color !important;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     transition-duration: 300ms;
   }
 
   /* Exclude elements that shouldn't transition or have their own animations */
-  img,
-  svg,
-  video,
-  canvas,
-  audio,
-  iframe,
-  embed,
-  object,
+  img:not([class*="transition"]):not([class*="hover:"]):not([class*="group-hover:"]):not([class*="scale"]):not([class*="transition-transform"]):not(.cta-image),
+  svg:not([class*="transition"]),
+  video:not([class*="transition"]),
+  canvas:not([class*="transition"]),
+  audio:not([class*="transition"]),
+  iframe:not([class*="transition"]),
+  embed:not([class*="transition"]),
+  object:not([class*="transition"]),
   [data-framer-name],
-  [class*="animate"],
+  [class*="animate"]:not([class*="transition"]),
   [class*="motion"],
-  [style*="transform"] {
+  [style*="transform"]:not([class*="transition"]):not([class*="hover:"]):not([class*="group-hover:"]):not([class*="transition-transform"]):not(.cta-image) {
     transition: none !important;
+  }
+  
+  /* Allow transitions on images with explicit transition classes - HIGH PRIORITY */
+  img[class*="transition-transform"],
+  img[class*="transition"][class*="group-hover:scale"],
+  img[class*="group-hover:scale"],
+  img[class*="hover:scale"] {
+    transition: transform 300ms ease-out !important;
+    transition-property: transform !important;
+    transition-timing-function: ease-out !important;
+    transition-duration: 300ms !important;
+    will-change: transform;
   }
 
   html {
@@ -220,7 +248,21 @@
   .card .thumb {
     @apply flex bg-[#31bfd3] h-[280px] relative overflow-hidden w-full;
     clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-    transition: transform 300ms ease-out;
+  }
+  
+  /* Ensure images in card thumbs can transition smoothly - HIGHEST PRIORITY */
+  .card .thumb img.cta-image,
+  .thumb img.cta-image,
+  img.cta-image {
+    transition: transform 300ms ease-out !important;
+    transform: scale(1) !important;
+    will-change: transform;
+  }
+  
+  .group:hover .card .thumb img.cta-image,
+  .group:hover .thumb img.cta-image,
+  .group:hover img.cta-image {
+    transform: scale(1.1) !important;
   }
 
   .card-img-top {
@@ -381,6 +423,15 @@
   .btn-primary {
     @apply text-white bg-primary border-primary;
     transition: background-color 300ms ease-out, border-color 300ms ease-out;
+  }
+  
+  /* Ensure transform transitions work on buttons with scale hover */
+  .btn-primary[class*="scale"],
+  button.btn-primary[class*="scale"],
+  .btn.btn-primary[class*="scale"],
+  button[class*="group-hover:scale"],
+  .btn[class*="group-hover:scale"] {
+    transition: transform 300ms ease-out, background-color 300ms ease-out, border-color 300ms ease-out !important;
   }
 
   .btn-primary:hover {
