@@ -24,10 +24,10 @@ export default function Header() {
 
   return (
     <div className="honey">
-      <header className="flex flex-wrap items-center justify-center py-3 px-5 border-b border-[#333]">
+      <header className="flex flex-wrap items-center justify-center py-3 px-5 border-b border-[#333] relative z-[60] bg-transparent">
         <Link
           href="/"
-          className="flex items-center mb-0 me-auto"
+          className="flex items-center mb-0 me-auto relative z-[61]"
         >
           <Image
             src="/img/logo-mrm-racing.png"
@@ -35,6 +35,7 @@ export default function Header() {
             width={107}
             height={32}
             className="h-8 relative top-1"
+            style={{ color: 'inherit' }}
           />
           <span className="hidden">MRM Racing</span>
         </Link>
@@ -55,33 +56,43 @@ export default function Header() {
           ))}
         </ul>
         <button
-          className="lg:hidden navbar-toggler mr-4 p-2 border border-[#333] rounded bg-transparent"
+          className="lg:hidden navbar-toggler mr-4 p-2 border border-[#333] rounded bg-transparent relative z-[60]"
           type="button"
           onClick={() => setIsMenuOpen(!isMenuOpen)}
           aria-label="Toggle navigation"
         >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            fill="currentColor"
-            className="bi bi-list text-white"
-            viewBox="0 0 16 16"
-          >
-            <path
-              fillRule="evenodd"
-              d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5"
-            />
-          </svg>
+          {isMenuOpen ? (
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              fill="currentColor"
+              className="bi bi-x-lg text-white"
+              viewBox="0 0 16 16"
+            >
+              <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z" />
+            </svg>
+          ) : (
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              fill="currentColor"
+              className="bi bi-list text-white"
+              viewBox="0 0 16 16"
+            >
+              <path
+                fillRule="evenodd"
+                d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5"
+              />
+            </svg>
+          )}
         </button>
         <div
-          className={`fixed top-[75px] right-0 h-[calc(100vh-75px)] w-80 bg-black text-white z-50 border-l border-black transition-transform duration-300 ease-in-out ${
+          className={`fixed top-[75px] left-0 right-0 h-[calc(100vh-75px)] w-full bg-black text-white z-50 transition-transform duration-300 ease-in-out ${
             isMenuOpen ? "translate-x-0" : "translate-x-full"
           }`}
           style={{
-            backgroundImage: "url('/img/bg-charc-carbonfiber.png')",
-            backgroundSize: "150%",
-            backgroundPosition: "top center",
             fontSize: "1.4em",
           }}
           onClick={(e) => e.stopPropagation()}

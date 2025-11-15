@@ -61,7 +61,9 @@ export default function Home() {
       </section>
       <section className="showcase bg-fiber py-3 flex flex-col justify-center relative min-h-[80vh] md:h-[75vh] overflow-x-hidden">
         <ShapeDivider variant="bottom-1741057438" className="top-[-40px] md:top-[-140px]" />
-        <KartDiagram />
+        <div className="container px-4">
+          <KartDiagram />
+        </div>
       </section>
       <section className="partner bg-fiber flex flex-col justify-center relative min-h-[70vh] pb-[15em] md:pb-[10em]">
         <ShapeDivider variant="bottom-1741057438" className="top-[-40px] md:top-[-140px]" />

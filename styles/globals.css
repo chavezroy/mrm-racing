@@ -160,6 +160,12 @@
     @apply px-5 border-b border-[#333];
   }
 
+  .honey header img {
+    color: inherit !important;
+    position: relative;
+    z-index: 61;
+  }
+
   .bg-fiber {
     background: url('/img/bg-charc-carbonfiber.png') center;
     background-size: 150%;
@@ -364,6 +370,12 @@
   .kart-dia {
     @apply relative w-full max-w-[1000px] mx-auto my-8;
     overflow: visible;
+  }
+
+  @media (max-width: 767px) {
+    .showcase .kart-dia {
+      width: 90%;
+    }
   }
 
   .kart-dia span {

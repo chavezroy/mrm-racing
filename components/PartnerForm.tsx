@@ -138,8 +138,9 @@ export default function PartnerForm({ className = "", onSuccessStateChange }: Pa
         transition={{ duration: 0.3 }}
         onSubmit={handleSubmit}
         className="w-full"
+        suppressHydrationWarning
       >
-        <div className="product-options">
+        <div className="product-options" suppressHydrationWarning>
           <div className="selector-wrapper">
             <div className="mb-3 row flex flex-col md:flex-row md:items-center md:justify-end">
               <label htmlFor="name" className="col-sm-4 col-form-label text-left md:text-right mb-2 md:mb-0 md:pr-4 whitespace-nowrap">

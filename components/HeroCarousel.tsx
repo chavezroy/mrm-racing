@@ -170,30 +170,6 @@ export default function HeroCarousel() {
               <motion.h5
                 initial={{ 
                   opacity: 0, 
-                  x: -300,
-                  filter: "blur(15px) brightness(2)"
-                }}
-                animate={isVisible ? { 
-                  opacity: 1, 
-                  x: 0,
-                  filter: "blur(0px) brightness(1)"
-                } : { 
-                  opacity: 0, 
-                  x: -300,
-                  filter: "blur(15px) brightness(2)"
-                }}
-                transition={{ 
-                  duration: 0.8, 
-                  delay: 0.4,
-                  ease: [0.25, 0.46, 0.45, 0.94] // Fast acceleration curve
-                }}
-                className="text-5xl md:text-6xl font-racing leading-[55px] mb-0 text-white drop-shadow-[0_4px_8px_rgba(0,0,0,0.5)]"
-              >
-                Malcolm Mancias
-              </motion.h5>
-              <motion.h3
-                initial={{ 
-                  opacity: 0, 
                   x: 300,
                   filter: "blur(15px) brightness(2)"
                 }}
@@ -211,38 +187,10 @@ export default function HeroCarousel() {
                   delay: 0.7,
                   ease: [0.25, 0.46, 0.45, 0.94] // Fast acceleration curve
                 }}
-                className="text-2xl font-michroma mb-0 text-white drop-shadow-[0_4px_8px_rgba(0,0,0,0.5)]"
+                className="text-5xl md:text-6xl font-racing leading-[55px] mb-0 text-white drop-shadow-[0_4px_8px_rgba(0,0,0,0.5)]"
               >
-                Kid Kart Racer{" "}
-                <motion.span
-                  initial={{ 
-                    opacity: 0, 
-                    scale: 0.5,
-                    x: 50,
-                    filter: "blur(8px)"
-                  }}
-                  animate={isVisible ? { 
-                    opacity: 1, 
-                    scale: 1,
-                    x: 0,
-                    filter: "blur(0px)"
-                  } : { 
-                    opacity: 0, 
-                    scale: 0.5,
-                    x: 50,
-                    filter: "blur(8px)"
-                  }}
-                  transition={{ 
-                    duration: 0.5, 
-                    delay: 1.1,
-                    ease: [0.34, 1.56, 0.64, 1] // Quick snap-in
-                  }}
-                  className="badge number rounded-none leading-tight text-[125%] font-black font-sans px-1 pt-1 border-none shadow-[3px_3px_5px_rgba(0,0,0,0.25)] text-black inline-block"
-                  style={{ backgroundColor: '#ffc107' }}
-                >
-                  99
-                </motion.span>
-              </motion.h3>
+                Kid Kart Racer
+              </motion.h5>
             </div>
           </div>
         </div>
