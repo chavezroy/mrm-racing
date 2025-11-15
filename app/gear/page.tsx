@@ -17,8 +17,8 @@ export default function GearPage() {
       <h1 className="text-center text-2xl md:text-4xl font-racing leading-[60px] my-4 text-white">
         Gear & Equipment
       </h1>
-      <section className="about gear bg-fiber flex flex-col justify-center py-12 md:py-16 min-h-[50vh] relative">
-        <div className="container self-center px-4 max-w-5xl">
+      <section className="about gear bg-fiber flex flex-col justify-center py-12 md:py-16 min-h-[50vh] relative overflow-visible">
+        <div className="container self-center px-4 max-w-5xl overflow-visible">
           <ScrollReveal animation="fadeIn">
             <h2 className="heading text-center mb-8 md:mb-12 text-2xl font-michroma leading-tight text-white w-fit mx-auto">
               <span className="text-secondary text-primary block text-[90%] leading-tight mb-1 uppercase">
@@ -27,8 +27,8 @@ export default function GearPage() {
               and gear
             </h2>
           </ScrollReveal>
-          <div className="flex flex-col md:flex-row gap-6 md:gap-8 items-start justify-center">
-            <ScrollReveal animation="fadeIn" delay={0.2} className="w-full md:w-auto">
+          <div className="flex flex-col md:flex-row gap-6 md:gap-8 items-start justify-center overflow-visible">
+            <ScrollReveal animation="fadeIn" delay={0.2} className="w-full md:w-auto gear-stats-container">
               <ul className="list-group honey mb-4 p-2 border border-white/10 bg-fiber w-full md:w-auto md:min-w-fit">
                 <li className="list-group-item border-b border-white/10 py-3 font-bold whitespace-nowrap">
                   <span className="label opacity-75 font-normal">Racer:</span> Malcolm Mancias
@@ -50,7 +50,7 @@ export default function GearPage() {
                 </li>
               </ul>
             </ScrollReveal>
-            <div className="w-full md:w-auto md:flex-1 flex justify-center md:justify-end">
+            <div className="w-full md:w-auto md:flex-1 flex justify-center md:justify-end overflow-visible">
               <ScrollReveal animation="fadeIn" delay={0.3}>
                 <KartDiagram isGearPage={true} />
               </ScrollReveal>
@@ -58,7 +58,7 @@ export default function GearPage() {
           </div>
         </div>
       </section>
-      <section className="gear showcase bg-fiber flex flex-col justify-center min-h-[40vh] md:h-[80vh] relative">
+      <section className="gear showcase flex flex-col justify-center min-h-[40vh] md:h-[80vh] relative">
         <ShapeDivider variant="bottom-1741052430" />
       </section>
       <Footer />

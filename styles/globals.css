@@ -79,6 +79,7 @@
     @apply overflow-x-hidden bg-black text-gray-200;
     line-height: 1.65;
     font-family: Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    overflow-x: hidden;
   }
 
   h1 {
@@ -165,6 +166,13 @@
     background-repeat: repeat-x;
   }
 
+  @media (max-width: 767px) {
+    .about.bg-fiber {
+      background-repeat: repeat-y;
+      background-position: 50% 350px;
+    }
+  }
+
   @media (min-width: 768px) {
     .honey {
       background-size: 50%;
@@ -174,27 +182,28 @@
       background-repeat: repeat-x;
     }
     .partner.bg-fiber {
-      background-size: 40%;
-      background-repeat: repeat-x;
+      background-size: 50% 40% !important;
+      background-repeat: repeat-x !important;
     }
     .sched.bg-fiber {
       background-size: 40%;
+      background-position: center center !important;
     }
     .about.bg-fiber {
-      background-repeat: repeat;
-      background-position: center;
-      background-size: 40%;
+      background-repeat: repeat-x !important;
+      background-position: center !important;
+      background-size: 50% 40% !important;
     }
     .about.gear.bg-fiber {
-      background-repeat: repeat-x;
-      background-size: 40%;
+      background-repeat: repeat-x !important;
+      background-size: 60% 40% !important;
     }
     .gear.showcase.bg-fiber {
       background-size: 40%;
     }
     .showcase.bg-fiber {
-      background-size: 120%;
-      background-repeat: repeat-x;
+      background-size: 50% !important;
+      background-repeat: repeat-x !important;
     }
   }
 
@@ -235,7 +244,8 @@
   .custom-shape-divider-bottom-1741052430 svg {
     @apply relative block;
     width: calc(100% + 1.3px);
-    height: 180px;
+    height: 80px;
+    bottom: 1px;
   }
 
   .custom-shape-divider-bottom-1741052430 .shape-fill {
@@ -353,22 +363,63 @@
 
   .kart-dia {
     @apply relative w-full max-w-[1000px] mx-auto my-8;
+    overflow: visible;
   }
 
   .kart-dia span {
     @apply absolute block;
   }
 
-  .kart-dia span.one {
+  .kart-dia span.one:not(.gear-page span.one) {
     @apply top-[-70px];
   }
 
-  .kart-dia span.two {
+  .kart-dia span.two:not(.gear-page span.two) {
     @apply right-[20px] md:right-[20px] top-[-40px];
   }
 
-  .gear-page .fade.two {
-    right: -70px;
+  .gear-page {
+    @apply overflow-visible;
+    max-width: 100%;
+  }
+
+  @media (max-width: 767px) {
+    .gear-page {
+      width: 100%;
+      left: 0px;
+      padding-top: 3rem;
+      padding-bottom: 3rem;
+    }
+
+    .gear-page .kart-dia span.one,
+    .gear-page .kart-dia .fade.one,
+    .gear-page .kart-dia span.fade.one {
+      top: -30px !important;
+      bottom: auto !important;
+      transform: translateX(0) translateY(0) !important;
+    }
+
+    .gear-page .kart-dia span.two,
+    .gear-page .kart-dia .fade.two,
+    .gear-page .kart-dia span.fade.two {
+      top: 0px !important;
+      right: -20px !important;
+      left: auto !important;
+      transform: translateX(0) translateY(0) !important;
+    }
+
+    .gear-page .kart-dia span.three,
+    .gear-page .kart-dia .fade.three,
+    .gear-page .kart-dia span.fade.three {
+      bottom: 0 !important;
+      right: -20px !important;
+      top: auto !important;
+      transform: translateX(0) translateY(0) !important;
+    }
+
+    .gear-stats-container {
+      padding-bottom: 2rem;
+    }
   }
 
   .kart-dia span.three {
@@ -404,8 +455,28 @@
   }
 
   @media (min-width: 768px) {
-    .kart-dia span.two {
+    .kart-dia span.one:not(.gear-page span.one),
+    .kart-dia .fade.one:not(.gear-page .fade.one),
+    .kart-dia span.fade.one:not(.gear-page span.fade.one) {
+      left: 60px;
+    }
+
+    .kart-dia span.two:not(.gear-page span.two) {
       right: 120px;
+    }
+
+    .gear-page .kart-dia span.one,
+    .gear-page .kart-dia .fade.one,
+    .gear-page .kart-dia span.fade.one {
+      top: 0 !important;
+      left: -70px !important;
+    }
+
+    .gear-page .kart-dia span.two,
+    .gear-page .kart-dia .fade.two,
+    .gear-page .kart-dia span.fade.two {
+      right: -60px !important;
+      top: -40px !important;
     }
     span.one .line {
       width: 190px;
@@ -525,6 +596,12 @@
   .sched {
     @apply pb-[10em] relative;
     background-position: top;
+  }
+
+  @media (min-width: 768px) {
+    .sched {
+      background-position: center center;
+    }
   }
 
   .gear.showcase {

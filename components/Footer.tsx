@@ -28,48 +28,21 @@ export default function Footer() {
         backgroundRepeat: "no-repeat",
         backgroundPosition: "top center",
         backgroundColor: "#05111b",
-        backgroundSize: "200%",
+        backgroundSize: "60%",
       }}
     >
-      <div className="container mx-auto px-4">
-        <p className="float-right mb-1">
-          <a
-            href="#"
-            onClick={(e) => {
-              e.preventDefault();
-              window.scrollTo({ top: 0, behavior: "smooth" });
-            }}
-            className="text-[#c5c5c5] hover:text-white"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="16"
-              height="16"
-              fill="currentColor"
-              className="bi bi-arrow-up inline"
-              viewBox="0 0 16 16"
-            >
-              <path
-                fillRule="evenodd"
-                d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5"
-              />
-            </svg>{" "}
-            Back to top
-          </a>
-        </p>
-        <ul className="nav block md:inline">
+      <div className="container mx-auto px-4 flex flex-col md:block">
+        <ul className="nav flex flex-col md:flex-row mb-4 md:mb-0">
           {navLinks.map((link, index) => (
             <li
               key={link.href}
-              className={`nav-item ${index === 0 ? "inline" : "inline"} ${
-                index === 0 ? "md:inline" : "md:inline"
-              }`}
+              className="nav-item"
             >
               <Link
                 href={link.href}
                 className={`nav-link ${
-                  index === 0 ? "pr-4 md:pr-4" : "px-4 md:px-4"
-                } py-4 md:py-0 inline-block md:inline ${
+                  index === 0 ? "pr-0 md:pr-4" : "px-0 md:px-4"
+                } py-2 md:py-0 block md:inline-block ${
                   isActive(link.href)
                     ? "active text-primary"
                     : "text-[#c5c5c5] hover:text-white"
@@ -80,7 +53,32 @@ export default function Footer() {
             </li>
           ))}
         </ul>
-        <p className="mb-0 text-secondary mt-4">Copyright 2025. All rights reserved.</p>
+        <p className="mb-4 md:mb-0 md:float-right md:mb-1">
+          <a
+            href="#"
+            onClick={(e) => {
+              e.preventDefault();
+              window.scrollTo({ top: 0, behavior: "smooth" });
+            }}
+            className="text-[#c5c5c5] hover:text-white inline-flex items-center"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="currentColor"
+              className="bi bi-arrow-up inline mr-1"
+              viewBox="0 0 16 16"
+            >
+              <path
+                fillRule="evenodd"
+                d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5"
+              />
+            </svg>
+            Back to top
+          </a>
+        </p>
+        <p className="mb-0 md:mb-0 text-secondary md:inline opacity-40 text-sm">Copyright 2025. All rights reserved.</p>
       </div>
     </footer>
   );

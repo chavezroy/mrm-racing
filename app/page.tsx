@@ -59,13 +59,13 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section className="showcase bg-fiber py-3 flex flex-col justify-center relative min-h-[80vh] md:h-[75vh]">
+      <section className="showcase bg-fiber py-3 flex flex-col justify-center relative min-h-[80vh] md:h-[75vh] overflow-x-hidden">
         <ShapeDivider variant="bottom-1741057438" className="top-[-40px] md:top-[-140px]" />
         <KartDiagram />
       </section>
       <section className="partner bg-fiber flex flex-col justify-center relative min-h-[70vh] pb-[15em] md:pb-[10em]">
         <ShapeDivider variant="bottom-1741057438" className="top-[-40px] md:top-[-140px]" />
-        <div className="container relative z-10">
+        <div className="container relative z-10 px-4">
           <ScrollReveal animation="fadeIn">
             <h2 className="heading text-center mb-5 mt-0 text-2xl font-michroma leading-tight text-white w-fit mx-auto relative z-10">
               <span className="text-secondary text-primary block text-[90%] leading-normal mb-1 overflow-visible relative z-10 uppercase">

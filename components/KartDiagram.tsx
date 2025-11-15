@@ -10,7 +10,17 @@ type KartDiagramProps = {
 
 export default function KartDiagram({ isGearPage = false }: KartDiagramProps) {
   const [isVisible, setIsVisible] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 767);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   useEffect(() => {
     if (isVisible) return;
@@ -42,7 +52,7 @@ export default function KartDiagram({ isGearPage = false }: KartDiagramProps) {
   }, [isVisible]);
 
   return (
-    <div ref={ref} className={`kart-dia relative w-full max-w-[1000px] mx-auto ${isGearPage ? 'gear-page' : ''}`}>
+    <div ref={ref} className={`kart-dia relative w-full max-w-[1000px] mx-auto ${isGearPage ? 'gear-page' : 'px-4'}`}>
       <motion.div
         className="absolute inset-0"
         initial={{ opacity: 0 }}
@@ -58,8 +68,19 @@ export default function KartDiagram({ isGearPage = false }: KartDiagramProps) {
       />
       <motion.span
         className="fade one absolute top-[-70px] md:top-[-70px]"
+        style={isGearPage && isMobile ? {
+          top: '-30px',
+          bottom: 'auto',
+        } : isGearPage && !isMobile ? {
+          top: '0',
+          left: '-70px',
+        } : undefined}
         initial={{ opacity: 0, y: -20 }}
-        animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }}
+        animate={isVisible ? { 
+          opacity: 1, 
+          y: 0,
+          ...(isGearPage && isMobile ? { top: '-30px' } : isGearPage && !isMobile ? { top: '0', left: '-70px' } : {})
+        } : { opacity: 0, y: -20 }}
         transition={{ duration: 0.6, delay: 0.8, ease: "easeOut" }}
       >
         <motion.span
@@ -77,9 +98,22 @@ export default function KartDiagram({ isGearPage = false }: KartDiagramProps) {
         HAASE: NINJA BABY KART
       </motion.span>
       <motion.span
-        className="fade two absolute right-[120px] md:right-[120px] top-[-40px] md:top-[-40px]"
+        className="fade two absolute"
+        style={isGearPage && isMobile ? {
+          top: '0px',
+          right: '-20px',
+          left: 'auto',
+        } : isGearPage && !isMobile ? {
+          right: '-60px',
+          top: '-40px',
+        } : undefined}
         initial={{ opacity: 0, y: -20 }}
-        animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }}
+        animate={isVisible ? { 
+          opacity: 1, 
+          y: 0,
+          x: 0,
+          ...(isGearPage && isMobile ? { top: '0px', right: '-20px' } : isGearPage && !isMobile ? { right: '-60px', top: '-40px' } : {})
+        } : { opacity: 0, y: -20 }}
         transition={{ duration: 0.6, delay: 1, ease: "easeOut" }}
       >
         <motion.span
@@ -98,8 +132,17 @@ export default function KartDiagram({ isGearPage = false }: KartDiagramProps) {
       </motion.span>
       <motion.span
         className="fade three absolute right-[20px] md:right-0 bottom-[-50px] md:bottom-0"
+        style={isGearPage && isMobile ? {
+          bottom: '0',
+          right: '-20px',
+          top: 'auto',
+        } : undefined}
         initial={{ opacity: 0, y: 20 }}
-        animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+        animate={isVisible ? { 
+          opacity: 1, 
+          y: 0,
+          ...(isGearPage && isMobile ? { bottom: '0', right: '-20px' } : {})
+        } : { opacity: 0, y: 20 }}
         transition={{ duration: 0.6, delay: 2, ease: "easeOut" }}
       >
         <motion.span
