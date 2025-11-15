@@ -52,17 +52,17 @@ export default function SchedulePage() {
         <div className="container mx-auto">
           <ScrollReveal animation="fadeIn">
             <h2 className="heading text-center mb-2 mt-0 text-2xl font-michroma leading-tight text-white w-fit mx-auto">
-              <span className="text-secondary text-primary block text-[70%] leading-tight mb-1">
+              <span className="text-secondary text-primary block text-[90%] leading-tight mb-1 uppercase">
                 On the
               </span>
               track
             </h2>
           </ScrollReveal>
           <p className="text-center text-white mb-8">Check out the current schedule.</p>
-          <div className="flex justify-center w-full">
+          <div className="flex justify-center w-full mb-12 md:mb-16">
             <div className="schedule w-full md:w-[40%]">
               {scheduleData.map((item, index) => (
-                <ScheduleItem key={index} {...item} />
+                <ScheduleItem key={index} {...item} delay={index * 0.1} />
               ))}
             </div>
           </div>

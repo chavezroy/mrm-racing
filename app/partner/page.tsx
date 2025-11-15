@@ -21,7 +21,7 @@ export default function PartnerPage() {
         <div className="container mx-auto px-4">
           <ScrollReveal animation="fadeIn">
             <h2 className="heading text-center mb-5 mt-0 text-2xl font-michroma leading-tight text-white w-fit mx-auto">
-              <span className="text-secondary text-primary block text-[70%] leading-normal mb-1 overflow-visible">
+              <span className="text-secondary text-primary block text-[90%] leading-normal mb-1 overflow-visible uppercase">
                 Become a
               </span>
               partner

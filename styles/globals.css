@@ -88,7 +88,7 @@
   }
 
   h2 {
-    @apply text-2xl leading-tight my-2;
+    @apply text-2xl leading-tight my-2 uppercase;
     font-family: var(--font-michroma), sans-serif;
   }
 
@@ -358,6 +358,10 @@
     @apply right-[20px] md:right-[20px] top-[-40px];
   }
 
+  .gear-page .fade.two {
+    right: -70px;
+  }
+
   .kart-dia span.three {
     @apply right-[20px] md:right-0 bottom-[-50px] md:bottom-0;
   }
@@ -392,7 +396,7 @@
 
   @media (min-width: 768px) {
     .kart-dia span.two {
-      right: 20px;
+      right: 120px;
     }
     span.one .line {
       width: 190px;

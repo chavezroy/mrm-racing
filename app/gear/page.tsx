@@ -21,7 +21,7 @@ export default function GearPage() {
         <div className="container self-center px-4 max-w-5xl">
           <ScrollReveal animation="fadeIn">
             <h2 className="heading text-center mb-8 md:mb-12 text-2xl font-michroma leading-tight text-white w-fit mx-auto">
-              <span className="text-secondary text-primary block text-[70%] leading-tight mb-1">
+              <span className="text-secondary text-primary block text-[90%] leading-tight mb-1 uppercase">
                 Kart accessories
               </span>
               and gear
@@ -52,7 +52,7 @@ export default function GearPage() {
             </ScrollReveal>
             <div className="w-full md:w-auto md:flex-1 flex justify-center md:justify-end">
               <ScrollReveal animation="fadeIn" delay={0.3}>
-                <KartDiagram />
+                <KartDiagram isGearPage={true} />
               </ScrollReveal>
             </div>
           </div>

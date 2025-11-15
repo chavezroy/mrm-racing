@@ -21,7 +21,7 @@ export default function MalcolmPage() {
         <div className="container self-center px-4">
           <ScrollReveal animation="fadeIn">
             <h2 className="heading text-center mb-5 text-2xl font-michroma leading-tight text-white w-fit mx-auto">
-              <span className="text-secondary text-primary block text-[70%] leading-tight">
+              <span className="text-secondary text-primary block text-[90%] leading-tight uppercase">
                 Meet
               </span>
               Malcolm Mancias

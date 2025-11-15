@@ -68,7 +68,7 @@ export default function Home() {
         <div className="container relative z-10">
           <ScrollReveal animation="fadeIn">
             <h2 className="heading text-center mb-5 mt-0 text-2xl font-michroma leading-tight text-white w-fit mx-auto relative z-10">
-              <span className="text-secondary text-primary block text-[70%] leading-normal mb-1 overflow-visible relative z-10">
+              <span className="text-secondary text-primary block text-[90%] leading-normal mb-1 overflow-visible relative z-10 uppercase">
                 Become a
               </span>
               partner

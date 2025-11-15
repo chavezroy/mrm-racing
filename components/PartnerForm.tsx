@@ -143,7 +143,7 @@ export default function PartnerForm({ className = "", onSuccessStateChange }: Pa
           <div className="selector-wrapper">
             <div className="mb-3 row flex flex-col md:flex-row md:items-center md:justify-end">
               <label htmlFor="name" className="col-sm-4 col-form-label text-left md:text-right mb-2 md:mb-0 md:pr-4">
-                Full Name
+                Full Name <span className="text-red-500">*</span>
               </label>
               <div className="col-sm-8 w-full md:max-w-[380px] md:flex-shrink-0">
                 <input
@@ -171,7 +171,7 @@ export default function PartnerForm({ className = "", onSuccessStateChange }: Pa
           <div className="product-quantity inline-input-wrapper">
             <div className="mb-3 row flex flex-col md:flex-row md:items-center md:justify-end">
               <label htmlFor="email" className="col-sm-4 col-form-label text-left md:text-right mb-2 md:mb-0 md:pr-4">
-                Your Email
+                Your Email <span className="text-red-500">*</span>
               </label>
               <div className="col-sm-8 w-full md:max-w-[380px] md:flex-shrink-0">
                 <input
@@ -200,7 +200,7 @@ export default function PartnerForm({ className = "", onSuccessStateChange }: Pa
           <div className="product-quantity inline-input-wrapper">
             <div className="mb-3 row flex flex-col md:flex-row md:items-center md:justify-end">
               <label htmlFor="company" className="col-sm-4 col-form-label text-left md:text-right mb-2 md:mb-0 md:pr-4">
-                Company
+                Company <span className="text-red-500">*</span>
               </label>
               <div className="col-sm-8 w-full md:max-w-[380px] md:flex-shrink-0">
                 <input
@@ -228,7 +228,7 @@ export default function PartnerForm({ className = "", onSuccessStateChange }: Pa
           <div className="product-quantity inline-input-wrapper">
             <div className="mb-3 row flex flex-col md:flex-row md:items-start md:justify-end">
               <label htmlFor="message" className="col-sm-4 col-form-label text-left md:text-right mb-2 md:mb-0 md:pr-4 md:pt-2">
-                Message
+                Message <span className="text-red-500">*</span>
               </label>
               <div className="col-sm-8 w-full md:max-w-[380px] md:flex-shrink-0">
                 <textarea
