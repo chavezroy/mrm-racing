@@ -1,0 +1,577 @@
+@font-face { font-family: racing; src: url('racingsansone-regular.ttf'); }
+@font-face { font-family: michroma; src: url('Michroma-Regular.ttf'); }
+* {
+  transition: all .3s ease-out;
+  margin: 0;
+}
+:root {
+  --animate-delay: 0.7s;
+}
+html {
+  scroll-behavior: smooth;
+} 
+body {
+  overflow-x: hidden;
+  line-height: 1.65;
+  background-color: #fff;
+  padding: 0;
+  color: #e9e9e9;
+}
+
+.w-10 {
+  width: 10%;
+}
+.w-15 {
+  width: 15%;
+}
+.w-20 {
+  width: 20%;
+}
+.w-30 {
+  width: 30%;
+}
+.w-40 {
+  width: 40%;
+}
+.w--50 {
+  width: 50%;
+}
+.w-60 {
+  width: 60%;
+}
+.w-120 {
+  width: 120%;
+}
+.mx-w-150  {
+  max-width: 150px;
+}
+
+.wrapper {
+  position: relative;
+  overflow: hidden;
+  height: 100vh;
+}
+.logo {
+  z-index: 1;
+  position: absolute;
+  top: 30px;
+  padding: 0 40px;
+  width: 350px;
+  animation-duration: .8s;
+}
+.logo-icon {
+  margin-bottom: 10px;
+  overflow: visible;
+}
+.logo .logo-text {
+  animation-duration: 1.5s;
+}
+.bg-hero {
+  position:absolute;
+  transform: translate(-50%, -50%);
+  left: 50%;
+  top: 50%;
+  height: 100vh;
+  width:auto;
+  transition: all;
+  animation-duration: 2s;
+  z-index: 0;
+}
+.artist.thumbs {
+  width: 100%;
+  position: relative;
+  transform: none;
+  left: auto;
+  top: auto;
+  height: 80vh;
+  transition: all;
+  animation-duration: 2s;
+  z-index: 0;
+}
+.artists .artist.thumbs {
+  height: 100vh;
+}
+
+.artist__name {
+  font-size: 2em;
+  margin-bottom: 0;
+  display: inline-block;
+  line-height: 1;
+  text-transform: uppercase;
+  position: absolute;
+  left: 0;
+  top: 0;
+  background: #000;
+  padding: 4px 8px;
+  z-index: 9;
+  transition: all 0.15s linear;
+  /* transform: translateX(100%); */
+  opacity: 1;
+  width: auto;
+  color: white;
+}
+a .artist__name {
+  opacity: 0;
+}
+a:hover .artist__name {
+  opacity: 1;
+  animation: lightSpeedInLeft; 
+  animation-duration: .5s;
+}
+.artists .carousel-caption {
+  top: 0;
+  line-height: 1;
+}
+.artists .carousel-item img {
+  opacity: .75;
+}
+.artists .share-buttons {
+  width: auto;
+  display: inline-block;
+}
+.share-music bi::before {
+  font-size: 1.7em;
+}
+.thumbs {
+  width: 100%;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  left: 50%;
+  top: 50%;
+  height: 100vh;
+  transition: all;
+  animation-duration: 2s;
+  z-index: 0;
+}
+.thumb {
+  display: flex;
+  background-color: white;
+  border: none;
+  width: 33.3%;
+  position: relative;
+  overflow: hidden;
+  z-index: 0;
+}
+.card .thumb {
+  display: flex;
+  background-color: white;
+  border: none;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  z-index: 0;
+  height: 300px;
+  max-width: 280px;
+}
+.products .card .thumb {
+ 
+  height: 200px;
+}
+.thumb a .artwork {
+  position: absolute;
+  width: auto;
+  height: 100%;
+  transform: translate(-50%, -50%);
+  left: 50%;
+  top: 50%;
+  /* min-width: 100%; */
+  z-index: 0;
+  animation: ease-in-out;
+  -webkit-filter: sepia(80%); /* Safari 6.0 - 9.0 */
+  filter: sepia(80%);
+  opacity: .55;
+}
+.thumb a:hover .artwork {
+  width: auto;
+  height: 110%;
+  -webkit-filter: saturate(100%); /* Safari 6.0 - 9.0 */
+  filter: saturate(100%);
+  opacity: 1;
+}
+
+.star {
+  position: relative;
+}
+.card-body .text-body-secondary {
+  color:rgba(105, 109, 113, 0.9)!important;
+  font-weight: 300;
+  line-height: 1;
+}
+a.cardlink {
+  cursor: pointer;
+  color: inherit;
+}
+a.cardlink:hover {
+  cursor: pointer;
+  text-decoration: none;
+}
+
+a.cardlink img{
+  position: relative;
+
+    width: 100%;
+    z-index: 0;
+    animation: ease-in-out;
+
+    position: absolute;
+    height: auto;
+    transform: translate(-50%, -50%);
+    left: 50%;
+    top: 50%;
+    animation-duration: .1s;
+   
+}
+a.cardlink:hover img{
+  height: auto;
+  width: 110%;
+
+}
+a.cardlink .card-title {
+  color: #ec4824;
+}
+a.cardlink:hover .card-title {
+  color: black;
+}
+.card .price {
+  color:black;
+  font-weight: 100;
+}
+a.cardlink:hover .card-title {
+  color: #fff;
+}
+.social {
+  position: absolute;
+  transform: translate(-50%, 50%);
+  left: 50%;
+  bottom: 20%;
+  z-index: 1;
+  pointer-events: auto;
+  margin-top: 1em;
+  width: 100%;
+  text-align: center;
+}
+h1 {
+  font-size: 4.5rem;
+  font-family: racing, sans-serif; 
+  line-height: 60px;
+  margin-bottom: 1em;
+  color:#fff;
+}
+h2 {
+  font-size: 1.5rem;
+  /* font-family: michroma, sans-serif;  */
+  /* line-height: 50px; */
+}
+h3 {
+  font-size: 2rem;
+  font-family: michroma, sans-serif; 
+  /* line-height: 60px; */
+  margin-bottom: 0;
+  color:#fff;
+}
+.shop h1{
+  font-family: sans-serif; 
+  color: #23201f;
+    font-size: 2.5em;
+    line-height: .9;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+.shop h2, .artists h2 {
+  font-size: 1.5em;
+  font-family: sans-serif; 
+  text-transform: uppercase;
+}
+.fs-6 {
+  font-size: 90%;
+}
+.product-description {
+  margin-top: 40px;
+  text-align: left;
+}
+.bi::before {
+  font-size: 1.7em;
+  margin:.5em;
+}
+
+.social a {
+  display: inline-block;
+  width: 100px;
+  height: 70px;
+  position: relative;
+  margin: 0 20px;
+  z-index: 1;
+  cursor: pointer;
+  pointer-events: auto;
+}
+.s_ico {
+  width: 100%;
+  height: 70px;
+  display: inline-block;
+  position: absolute;
+  cursor: pointer;
+  pointer-events: auto;
+  z-index: 1;
+  left: 50%;
+  transform: translate(-50%,0);
+}
+.social a:hover .s_ico {
+  height: 80px;
+  cursor: pointer;
+  pointer-events: auto;
+  z-index: 1;
+}
+.social > a:hover {
+  cursor:pointer;
+  z-index: 2;
+}
+.product-main-image img {
+  width: 100%;
+}
+
+.product-price {
+  font-size: 18px;
+}
+
+.logo-header {
+  margin-right: auto;
+}
+.logo-header img {
+  height:44px;
+}
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+  background-color:#ec4824;
+}
+.btn-primary {
+  color: #fff;
+  background-color: #ec4824;
+  border-color: #ec4824;
+}
+.btn-primary:hover {
+  color: #fff;
+  background-color: #c63615;
+  border-color: #c63615;
+}
+footer.bg-light-subtle {
+  background-color: #3e4451;
+  color: #777;
+}
+footer .nav-item:first-of-type .nav-link {
+  padding: 0 1rem 0 0;
+}
+footer .nav-link {
+  display: block;
+  padding: 0 1rem;
+}
+a.nav-link {
+  color:#c5c5c5;
+}
+a:hover.nav-link {
+  color:#ffffff;
+}
+@-webkit-keyframes flash {
+  0%,
+  50%,
+  to {
+    opacity:.7
+  }
+  25%,
+  75% {
+    opacity:1
+  }
+}
+@keyframes flash {
+  0%,
+  50%,
+  to {
+    opacity:.7
+  }
+  25%,
+  75% {
+    opacity:1
+  }
+}
+.animate__flash {
+  -webkit-animation-name:flash;
+  animation-name:flash
+}
+@media (min-width: 768px) {
+  .bg-hero {
+    position:absolute;
+    transform: translate(-50%, -50%);
+    left: 50%;
+    top: 50%;
+    min-width: 100%;
+    height: 100vh;
+  }
+  .logo {
+    max-width: 600px;
+    width: 600px;
+    top: 30%;
+  }
+  .logo-icon {
+    width: 180px;
+    position: relative;
+    top: -15px;
+  }
+  .logo-text {
+    width: 335px;
+  }
+  .social {
+    width: auto;
+    bottom: 35%;
+  }
+  .social h2 {
+    font-size: 3.5rem;
+    font-family: ElectricPanda, sans-serif; 
+    line-height: 50px;
+  }
+  .bi::before {
+    font-size: 1em;
+    margin: 0 .5em;
+  }
+  .share-music .bi::before {
+    font-size: 1.7em;
+  }
+  .social a {
+    display: inline-block;
+    width: 100px;
+    height: 70px;
+    position: relative;
+    margin: 0 20px;
+    z-index: 1;
+    cursor: pointer;
+    pointer-events: auto;
+  }
+  .s_ico {
+    width: 100%;
+    height: 70px;
+    display: inline-block;
+    position: absolute;
+    cursor: pointer;
+    pointer-events: auto;
+    z-index: 1;
+  }
+  .social a:hover .s_ico {
+    height: 80px;
+    cursor: pointer;
+    pointer-events: auto;
+    z-index: 1;
+  }
+  a.cardlink img{
+    position: relative;
+  
+      width: 100%;
+      z-index: 0;
+      animation: ease-in-out;
+  
+      position: absolute;
+      height: auto;
+      transform: translate(-50%, -50%);
+      left: 50%;
+      top: 50%;
+     
+  }
+  a.cardlink:hover img {
+    height: auto;
+    width: 110%;
+}
+.thumb a .artwork {
+  position: absolute;
+  width: 110%;
+  transform: translate(-50%, -50%);
+  left: 50%;
+  top: 50%;
+
+  z-index: 0;
+  animation: ease-in-out;
+  height: auto;
+}
+.thumb a:hover .artwork {
+  width: 120%;
+  height: auto;
+}
+.product-price {
+  font-size: 24px;
+}
+
+}
+@media only screen and (min-width: 1680px) {
+  .bg-hero {
+    position:absolute;
+    transform: translate(-50%, -50%);
+    left: 50%;
+    top: 50%;
+    width: 100%;
+    height: 110vh;
+  }
+  .social {
+    bottom: 40%;
+  }
+}
+@media (min-width: 1900px) {
+  .bg-hero {
+    position:absolute;
+    transform: translate(-50%, -50%);
+    left: 50%;
+    top: 50%;
+    width: 100%;
+    height: 110vh;
+  }
+}
+
+
+
+
+
+
+@media only screen 
+and (min-device-width : 375px) 
+and (max-device-width : 926px) 
+and (orientation : landscape) { 
+  .bg-hero { height: 115vh;
+    width: 100%;
+    }
+    .logo {
+      max-width: 550px;
+      width: 550px;
+      top: 25px;
+    }
+    .logo-icon {
+      width: 150px;
+      position: relative;
+      top: -15px;
+    }
+    .logo-text {
+      width: 300px;
+    }
+    .social {
+      width: auto;
+    }
+}
+@media only screen 
+and (min-device-width : 375px) 
+and (max-device-width : 926px) 
+and (-webkit-device-pixel-ratio : 3)
+and (orientation : landscape) { 
+  .bg-hero { height: 115vh;
+    width: 100%;
+    }
+    .logo {
+      max-width: 550px;
+      width: 550px;
+      top: 25px;
+    }
+    .logo-icon {
+      width: 150px;
+      position: relative;
+      top: -15px;
+    }
+    .logo-text {
+      width: 300px;
+    }
+    .social {
+      width: auto;
+    }
+}
+

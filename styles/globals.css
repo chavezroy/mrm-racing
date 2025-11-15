@@ -1,0 +1,477 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #ec4824;
+  --color-dark-blue: #05111b;
+  --color-dark-black: #0f0f0f;
+  --color-yellow: #ffc107;
+  --color-warning: #ffc107;
+}
+
+@layer base {
+  * {
+    margin: 0;
+  }
+
+  /* Only apply transitions to specific interactive elements - exclude transform to avoid conflicts with animations */
+  a:not([class*="motion"]):not([class*="animate"]),
+  button:not([class*="motion"]):not([class*="animate"]),
+  input:not([class*="motion"]):not([class*="animate"]),
+  textarea:not([class*="motion"]):not([class*="animate"]),
+  select:not([class*="motion"]):not([class*="animate"]),
+  .nav-link:not([class*="motion"]):not([class*="animate"]),
+  .btn:not([class*="motion"]):not([class*="animate"]),
+  .card:not([class*="motion"]):not([class*="animate"]),
+  .card-title:not([class*="motion"]):not([class*="animate"]) {
+    transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 300ms;
+  }
+
+  /* Exclude elements that shouldn't transition or have their own animations */
+  img,
+  svg,
+  video,
+  canvas,
+  audio,
+  iframe,
+  embed,
+  object,
+  [data-framer-name],
+  [class*="animate"],
+  [class*="motion"],
+  [style*="transform"] {
+    transition: none !important;
+  }
+
+  html {
+    @apply scroll-smooth;
+  }
+
+  body {
+    @apply overflow-x-hidden bg-black text-gray-200;
+    line-height: 1.65;
+    font-family: Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  }
+
+  h1 {
+    @apply text-4xl md:text-[4.5rem] leading-[60px] mb-4 text-white;
+    font-family: var(--font-racing), sans-serif;
+  }
+
+  h2 {
+    @apply text-2xl leading-tight my-2;
+    font-family: var(--font-michroma), sans-serif;
+  }
+
+  h3 {
+    @apply text-2xl mb-0 text-white;
+    font-family: var(--font-michroma), sans-serif;
+  }
+
+  h5 {
+    @apply text-5xl leading-[55px] mb-0 text-white;
+    font-family: var(--font-racing), sans-serif;
+  }
+
+  a {
+    @apply text-primary no-underline bg-transparent;
+    transition: color 300ms ease-out;
+  }
+
+  a:hover {
+    @apply text-[#ff6341] no-underline bg-transparent;
+  }
+
+  .nav-link {
+    @apply text-[#c5c5c5];
+    transition: color 300ms ease-out;
+  }
+
+  .nav-link:hover,
+  .nav-link:focus {
+    @apply text-primary;
+  }
+
+  .navbar-nav .nav-link.active,
+  footer .nav .nav-link.active {
+    @apply text-primary;
+  }
+}
+
+@layer utilities {
+  .font-racing {
+    font-family: var(--font-racing), sans-serif;
+  }
+  
+  .font-michroma {
+    font-family: var(--font-michroma), sans-serif;
+  }
+}
+
+@layer utilities {
+  .honey {
+    background: url('/img/bg-honeycomb.png');
+    background-size: initial;
+    background-repeat: no-repeat;
+    background-position: center right;
+    @apply bg-[#0f0f0f];
+  }
+
+  .honey header {
+    @apply px-5 border-b border-[#333];
+  }
+
+  .bg-fiber {
+    background: url('/img/bg-charc-carbonfiber.png') center;
+    background-size: 150%;
+    background-repeat: repeat-x;
+  }
+
+  @media (min-width: 768px) {
+    .honey {
+      background-size: 50%;
+    }
+    .bg-fiber {
+      background-size: 40%;
+      background-repeat: repeat-x;
+    }
+    .partner.bg-fiber {
+      background-size: 40%;
+      background-repeat: repeat-x;
+    }
+    .sched.bg-fiber {
+      background-size: 40%;
+    }
+    .about.bg-fiber {
+      background-repeat: repeat;
+      background-position: center;
+      background-size: 40%;
+    }
+    .about.gear.bg-fiber {
+      background-repeat: repeat-x;
+      background-size: 40%;
+    }
+    .gear.showcase.bg-fiber {
+      background-size: 40%;
+    }
+    .showcase.bg-fiber {
+      background-size: 120%;
+      background-repeat: repeat-x;
+    }
+  }
+
+  .custom-shape-divider-bottom-1741054392 svg {
+    @apply relative block;
+    width: calc(100% + 1.3px);
+    height: 150px;
+  }
+
+  .custom-shape-divider-bottom-1741054392 .shape-fill {
+    fill: #000;
+    stroke: #ec4824;
+    paint-order: stroke;
+    stroke-width: 8px;
+  }
+
+  .custom-shape-divider-bottom-1741052430 {
+    @apply absolute bottom-0 left-0 w-full overflow-hidden;
+    line-height: 0;
+    transform: rotate(180deg);
+  }
+
+  .custom-shape-divider-bottom-1741052430 svg {
+    @apply relative block;
+    width: calc(100% + 1.3px);
+    height: 180px;
+  }
+
+  .custom-shape-divider-bottom-1741052430 .shape-fill {
+    fill: #05111b;
+    stroke: #ec4824;
+    paint-order: stroke;
+  }
+
+  .custom-shape-divider-bottom-1741057438 {
+    @apply absolute left-0 w-full overflow-hidden;
+    top: -140px;
+    line-height: 0;
+    transform: rotate(180deg);
+    z-index: 1;
+  }
+
+  .custom-shape-divider-bottom-1741057438 svg {
+    @apply relative block;
+    width: calc(100% + 1.3px);
+    height: 150px;
+    transform: rotateY(180deg);
+  }
+
+  .custom-shape-divider-bottom-1741057438 .shape-fill {
+    fill: #000;
+    stroke: #ec4824;
+    paint-order: stroke;
+  }
+
+  .card {
+    @apply bg-transparent border border-black/10;
+  }
+
+  .card .thumb {
+    @apply flex bg-[#31bfd3] h-[280px] relative overflow-hidden w-full;
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    transition: transform 300ms ease-out;
+  }
+
+  .card-img-top {
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    @apply px-1;
+  }
+
+  .list-group-item {
+    @apply relative block py-3 px-5 bg-transparent border-none;
+  }
+
+  .about .list-group-item {
+    @apply border border-white/10 border-r-0 border-l-0 font-bold;
+  }
+
+  .about .list-group-item:first-child {
+    @apply border-t-0;
+  }
+
+  .about .list-group-item:last-child {
+    @apply border-b-0;
+  }
+
+  .list-group.honey {
+    @apply border border-white/10;
+    background-size: 250%;
+  }
+
+  .list-group.honey .list-group-item {
+    @apply text-white;
+  }
+
+  .list-group.honey .label {
+    @apply opacity-75 font-normal;
+  }
+
+  .schedule {
+    @apply uppercase font-black font-sans w-full;
+    transform: skew(-3deg);
+    transition: transform 300ms ease-out;
+  }
+
+  @media (min-width: 768px) {
+    .schedule {
+      @apply w-[40%];
+      transform: skew(-7deg);
+    }
+    .list-group.honey {
+      background-size: 150%;
+    }
+  }
+
+  .schedule .date .display-4 {
+    @apply leading-tight tracking-[-3px] font-black;
+  }
+
+  .schedule ul {
+    @apply my-2 p-0 bg-white/5;
+  }
+
+  .schedule .detail {
+    @apply h-[45px];
+  }
+
+  .kart-dia {
+    @apply relative w-full max-w-[1000px] mx-auto my-8;
+  }
+
+  .kart-dia span {
+    @apply absolute block;
+  }
+
+  .kart-dia span.one {
+    @apply top-[-70px];
+  }
+
+  .kart-dia span.two {
+    @apply right-[20px] md:right-[20px] top-[-40px];
+  }
+
+  .kart-dia span.three {
+    @apply right-[20px] md:right-0 bottom-[-50px] md:bottom-0;
+  }
+
+  .line {
+    @apply h-px bg-[#f518a4] z-[9] absolute;
+  }
+
+  span.one .line {
+    @apply absolute bottom-0 origin-left;
+    width: 140px;
+    right: 35px;
+    transform: rotate(45deg);
+    transition: transform 300ms ease-out, width 300ms ease-out;
+  }
+
+  span.two .line {
+    @apply absolute top-1/2 origin-right;
+    width: 40px;
+    left: -45px;
+    transform: rotate(-50deg);
+    transition: transform 300ms ease-out, width 300ms ease-out;
+  }
+
+  span.three .line {
+    @apply absolute bottom-1/2 origin-right;
+    width: 90px;
+    left: -100px;
+    transform: rotate(70deg);
+    transition: transform 300ms ease-out, width 300ms ease-out;
+  }
+
+  @media (min-width: 768px) {
+    .kart-dia span.two {
+      right: 20px;
+    }
+    span.one .line {
+      width: 190px;
+      right: -200px;
+    }
+    span.two .line {
+      width: 200px;
+      left: -210px;
+      transform: rotate(-12deg);
+    }
+    span.three .line {
+      width: 220px;
+      left: -230px;
+      transform: rotate(10deg);
+    }
+  }
+
+  .carousel {
+    @apply h-[70vh] md:h-[75vh] bg-[#005c8a] relative;
+  }
+
+  .carousel .carousel-inner,
+  .carousel .carousel-item {
+    @apply h-full;
+  }
+
+  .carousel img {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    left: 0;
+    top: 0;
+    transform: none;
+    --tw-translate-x: 0;
+    --tw-translate-y: 0;
+    transition: none;
+  }
+
+  .carousel-caption {
+    @apply absolute left-[5%] md:left-[15%] max-w-[400px] bottom-auto top-5 md:top-20;
+  }
+
+  .btn-primary {
+    @apply text-white bg-primary border-primary;
+    transition: background-color 300ms ease-out, border-color 300ms ease-out;
+  }
+
+  .btn-primary:hover {
+    color: white;
+    background-color: #c63615;
+    border-color: #c63615;
+  }
+
+  .number {
+    @apply rounded-none leading-tight text-[125%] font-black font-sans px-1 pt-1 border-none text-black;
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.25);
+    background-color: #ffc107;
+  }
+
+  .offcanvas.text-bg-dark {
+    @apply bg-black;
+    background-image: url('/img/bg-charc-carbonfiber.png');
+    background-size: 150%;
+    background-position: top center;
+    @apply text-xl;
+  }
+
+  .offcanvas.offcanvas-end {
+    @apply top-[75px] border-l border-black;
+    transition: transform 300ms ease-in-out;
+  }
+
+  .offcanvas-backdrop.show {
+    @apply opacity-0;
+  }
+
+  .navbar-nav.justify-content-end {
+    @apply text-center mt-8;
+  }
+
+  .v-80 {
+    @apply min-h-[80vh];
+  }
+
+  .about {
+    @apply min-h-[100vh] relative;
+  }
+
+  .about.page {
+    @apply pb-[10em];
+  }
+
+  .about.gear {
+    @apply min-h-[50vh];
+  }
+
+  .showcase {
+    @apply min-h-[80vh] md:h-[75vh] relative;
+  }
+
+  .partner {
+    @apply min-h-[70vh] pb-[15em] md:pb-[10em] relative;
+  }
+
+  .sched {
+    @apply pb-[10em] relative;
+    background-position: top;
+  }
+
+  .gear.showcase {
+    @apply min-h-[20vh] pb-0 relative;
+  }
+
+  @media (min-width: 48rem) {
+    .gear.showcase {
+      height: 20vh;
+    }
+  }
+
+  .skewed-image-mask-wrapper {
+    position: relative;
+    display: inline-block;
+  }
+
+  .skewed-image-mask {
+    clip-path: polygon(5% 3%, 95% 0%, 90% 97%, 10% 100%);
+    transform: skew(-2deg, -1deg);
+    overflow: hidden;
+    position: relative;
+  }
+
+  .skewed-image-mask img {
+    transform: skew(2deg, 1deg);
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+}
+
